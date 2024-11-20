@@ -2,39 +2,54 @@
 
 ![example workflow](https://github.com/uofu-emb/2024_lab10_Chase_Ayman/actions/workflows/main.yml/badge.svg)
 
-## NOTE
-Our method involves declaring all 5 scenarios as individual functions in the hello_freertos.c file, and you can comment out whichever functions you don't want to run/flash in the main().
+# Hello FreeRTOS Example Code - GPIO Blink Task Scenarios
 
-## Recorded Values from Activities
-Limiting Resistor = 1k ohm
-LED = Clear Green
+## **Note**
+Our method involves declaring all 5 scenarios as individual functions in the `hello_freertos.c` file. You can comment out whichever functions you don't want to run/flash in the `main()`.
 
-# Scenario 1
-Applied Voltage = 5V
-Pulled Amperage OFF State: 19.9 mA
-Pulled Amperage ON State: 20.5 mA
+---
 
-# Scenario 2
-Applied Voltage = 5V
-Pulled Amperage OFF State: 19.98 mA
-Pulled Amperage ON State: 20.45 mA
+## **Recorded Values from Activities**
 
-# Scenario 3
-Applied Voltage = 5V
-Pulled Amperage OFF State: 20.13 mA
-Pulled Amperage ON State: 20.33 mA
+- **Limiting Resistor:** 1k ohm  
+- **LED Type:** Clear Green  
 
-# Scenario 4
-Applied Voltage = 5V
-Pulled Amperage OFF State: 20.1 mA
-Pulled Amperage ON State: 20.63 mA
+---
 
-# Scenario 5
-Applied Voltage = 5V
-Pulled Amperage OFF State: 20.34 mA
-Pulled Amperage ON State: 20.41 mA
+## **Scenario 1**
+- **Applied Voltage:** 5V
+- **Pulled Amperage (OFF State):** 19.9 mA
+- **Pulled Amperage (ON State):** 20.5 mA
 
-______________
+---
+
+## **Scenario 2**
+- **Applied Voltage:** 5V
+- **Pulled Amperage (OFF State):** 19.98 mA
+- **Pulled Amperage (ON State):** 20.45 mA
+
+---
+
+## **Scenario 3**
+- **Applied Voltage:** 5V
+- **Pulled Amperage (OFF State):** 20.13 mA
+- **Pulled Amperage (ON State):** 20.33 mA
+
+---
+
+## **Scenario 4**
+- **Applied Voltage:** 5V
+- **Pulled Amperage (OFF State):** 20.1 mA
+- **Pulled Amperage (ON State):** 20.63 mA
+
+---
+
+## **Scenario 5**
+- **Applied Voltage:** 5V
+- **Pulled Amperage (OFF State):** 20.34 mA
+- **Pulled Amperage (ON State):** 20.41 mA
+
+---
 
 ## Lab 10 Power
 Learning Objectives
