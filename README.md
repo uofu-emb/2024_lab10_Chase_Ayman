@@ -20,11 +20,19 @@ Pulled Amperage OFF State: 19.98 mA
 Pulled Amperage ON State: 20.45 mA
 
 # Scenario 3
-
+Applied Voltage = 5V
+Pulled Amperage OFF State: 20.13 mA
+Pulled Amperage ON State: 20.33 mA
 
 # Scenario 4
+Applied Voltage = 5V
+Pulled Amperage OFF State: 20.1 mA
+Pulled Amperage ON State: 20.63 mA
 
 # Scenario 5
+Applied Voltage = 5V
+Pulled Amperage OFF State: 20.34 mA
+Pulled Amperage ON State: 20.41 mA
 
 ______________
 

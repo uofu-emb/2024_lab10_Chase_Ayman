@@ -12,7 +12,7 @@
 
 // Task priority and stack size definitions
 #define BLINK_TASK_PRIORITY     ( tskIDLE_PRIORITY + 2UL ) // Blink task priority
-#define BLINK_TASK_PRIORITY2     ( tskIDLE_PRIORITY + 5UL ) // Blink task priority
+#define BLINK_TASK_PRIORITY2    ( tskIDLE_PRIORITY + 5UL ) // Blink task priority
 #define BLINK_TASK_STACK_SIZE configMINIMAL_STACK_SIZE     // Stack size for blink task
 
 // Global variables
@@ -65,9 +65,9 @@ void blink_task_busy_loop(__unused void *params) {
     while (true) {
         // Blink LED rapidly in a busy loop
         gpio_put(OUT_PIN, true);
-        for (volatile int i = 0; i < 100000; i++); // Busy delay
+        for (volatile int i = 0; i < 1000000; i++); // Busy delay
         gpio_put(OUT_PIN, false);
-        for (volatile int i = 0; i < 100000; i++); // Busy delay
+        for (volatile int i = 0; i < 1000000; i++); // Busy delay
     }
 }
 
@@ -78,10 +78,21 @@ void blink_task_no_optimize(__unused void *params) {
     gpio_set_dir(OUT_PIN, GPIO_OUT); // Set it as an output pin
 
     while (true) {
-        gpio_put(OUT_PIN, true); // Turn on LED
-        for (volatile int i = 0; i < 500000; i++); // Long busy loop
-        gpio_put(OUT_PIN, false); // Turn off LED
-        for (volatile int i = 0; i < 500000; i++); // Long busy loop
+        gpio_put(OUT_PIN, true);    // Turn on LED
+
+        // Tight loop for CPU usage (no delay)
+        for (int i = 0; i < 10000000; i++) {
+            // Perform some trivial but CPU-heavy operations (e.g., multiplication)
+            volatile int dummy = i * 3;  // Keeps CPU busy with computation
+        }
+
+        gpio_put(OUT_PIN, false);   // Turn off LED
+
+        // Tight loop for CPU usage (no delay)
+        for (int i = 0; i < 10000000; i++) {
+            // Another CPU-heavy operation
+            volatile int dummy = i * 2;  // Keeps CPU busy with computation
+        }
     }
 }
 
@@ -110,10 +121,10 @@ int main(void) {
     //             BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
 
     //Scenario 2            
-    xTaskCreate(blink_task_thread, "BlinkThread",
-                BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
-    xTaskCreate(blink_task_thread2, "BlinkThread2",
-                BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY2, NULL);
+    // xTaskCreate(blink_task_thread, "BlinkThread",
+    //             BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
+    // xTaskCreate(blink_task_thread2, "BlinkThread2",
+    //             BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY2, NULL);
 
     //Scenario 3   
     // xTaskCreate(blink_task_busy_loop, "BlinkThread",
@@ -124,8 +135,8 @@ int main(void) {
     //             BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
 
     //Scenario 5
-    // xTaskCreate(blink_task_tight_loop, "BlinkThread",
-    //             BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
+    xTaskCreate(blink_task_tight_loop, "BlinkThread",
+                BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
 
     // Start the FreeRTOS scheduler
     vTaskStartScheduler();
