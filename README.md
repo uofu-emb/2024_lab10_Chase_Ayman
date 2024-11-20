@@ -2,7 +2,7 @@
 
 ![example workflow](https://github.com/uofu-emb/2024_lab10_Chase_Ayman/actions/workflows/main.yml/badge.svg)
 
-# Hello FreeRTOS Example Code - GPIO Blink Task Scenarios
+# Lab 10 - GPIO Blink Task Scenarios and Power Consumption
 
 ## **Note**
 Our method involves declaring all 5 scenarios as individual functions in the `hello_freertos.c` file. You can comment out whichever functions you don't want to run/flash in the `main()`.
