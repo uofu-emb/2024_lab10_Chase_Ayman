@@ -10,12 +10,17 @@ Limiting Resistor = 1k ohm
 LED = Clear Green
 
 # Scenario 1
-Pulled Amperage Range: 19.9mA - 20.4mA
+Applied Voltage = 5V
+Pulled Amperage OFF State: 19.9 mA
+Pulled Amperage ON State: 20.5 mA
 
 # Scenario 2
-
+Applied Voltage = 5V
+Pulled Amperage OFF State: 19.98 mA
+Pulled Amperage ON State: 20.45 mA
 
 # Scenario 3
+
 
 # Scenario 4
 

@@ -12,6 +12,7 @@
 
 // Task priority and stack size definitions
 #define BLINK_TASK_PRIORITY     ( tskIDLE_PRIORITY + 2UL ) // Blink task priority
+#define BLINK_TASK_PRIORITY2     ( tskIDLE_PRIORITY + 5UL ) // Blink task priority
 #define BLINK_TASK_STACK_SIZE configMINIMAL_STACK_SIZE     // Stack size for blink task
 
 // Global variables
@@ -27,20 +28,32 @@ void blink_task(__unused void *params) {
     while (true) {
         gpio_put(OUT_PIN, on); // Set the LED state
         on = !on;             // Toggle the LED state
-        sleep_ms(500);        // Delay for 500ms
+        sleep_ms(2500);        // Delay for 2500ms
     }
 }
 
-// 2. Blink an LED using FreeRTOS with a thread
+// 2. Blink an LED using FreeRTOS with multiple threads
 void blink_task_thread(__unused void *params) {
     gpio_init(OUT_PIN);            // Initialize the GPIO pin
     gpio_set_dir(OUT_PIN, GPIO_OUT); // Set it as an output pin
 
     while (true) {
         gpio_put(OUT_PIN, true); // Turn on LED
-        vTaskDelay(250);         // Wait 250ms
+        vTaskDelay(1500);         // Wait 1500ms
         gpio_put(OUT_PIN, false); // Turn off LED
-        vTaskDelay(250);         // Wait 250ms
+        vTaskDelay(250);         // Wait 1500ms
+    }
+}
+
+void blink_task_thread2(__unused void *params) {
+    gpio_init(OUT_PIN);            // Initialize the GPIO pin
+    gpio_set_dir(OUT_PIN, GPIO_OUT); // Set it as an output pin
+
+    while (true) {
+        gpio_put(OUT_PIN, true); // Turn on LED
+        vTaskDelay(2000);         // Wait 2000ms
+        gpio_put(OUT_PIN, false); // Turn off LED
+        vTaskDelay(2000);         // Wait 2000ms
     }
 }
 
@@ -93,12 +106,14 @@ int main(void) {
     // Uncomment the desired task to run
 
     //Scenario 1
-    xTaskCreate(blink_task, "BlinkThread",
-                BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
+    // xTaskCreate(blink_task, "BlinkThread",
+    //             BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
 
     //Scenario 2            
-    // xTaskCreate(blink_task_thread, "BlinkThread",
-    //             BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
+    xTaskCreate(blink_task_thread, "BlinkThread",
+                BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
+    xTaskCreate(blink_task_thread2, "BlinkThread2",
+                BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY2, NULL);
 
     //Scenario 3   
     // xTaskCreate(blink_task_busy_loop, "BlinkThread",
