@@ -2,6 +2,27 @@
 
 ![example workflow](https://github.com/uofu-emb/2024_lab10_Chase_Ayman/actions/workflows/main.yml/badge.svg)
 
+## NOTE
+Our method involves declaring all 5 scenarios as individual functions in the hello_freertos.c file, and you can comment out whichever functions you don't want to run/flash in the main().
+
+## Recorded Values from Activities
+Limiting Resistor = 1k ohm
+LED = Clear Green
+
+# Scenario 1
+Pulled Amperage Range: 19.9mA - 20.4mA
+
+# Scenario 2
+
+
+# Scenario 3
+
+# Scenario 4
+
+# Scenario 5
+
+______________
+
 ## Lab 10 Power
 Learning Objectives
 Read and apply datasheets
@@ -30,8 +51,8 @@ Measure the power consumption of the following scenarios. For each scenario, cre
 
 To eliminate any bias in the measurements, use an external LED with a known current value limiting resistor on a GPIO pin. Don't use the built in LED, which requires the wireless module to be enabled. If you want a serial connection, you need to use the UART pins rather than USB and access it with a serial converter.
 
-Blink an LED, using sleep_ms to delay iterations.
-Blink an LED, using FreeRTOS with a thread.
-Run a busy loop to get 100% CPU utilization
-Place #pragma GCC optimize ("O0") at the top of the file to disable compiler optimizations.
-Run a tight loop like the one below. Multiplication typically requires large amounts of silicon, and adders with a full carry chain causes lots of activity. I don't know if these will be the worst instructions for energy usage, but this should be a decent place to start.
+1) Blink an LED, using sleep_ms to delay iterations.
+2) Blink an LED, using FreeRTOS with a thread.
+3) Run a busy loop to get 100% CPU utilization
+4) Place #pragma GCC optimize ("O0") at the top of the file to disable compiler optimizations.
+5) Run a tight loop like the one below. Multiplication typically requires large amounts of silicon, and adders with a full carry chain causes lots of activity. I don't know if these will be the worst instructions for energy usage, but this should be a decent place to start.
