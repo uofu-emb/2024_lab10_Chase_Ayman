@@ -114,7 +114,7 @@ int main(void) {
     // Initialize standard I/O for printing messages
     stdio_init_all();
 
-    // Uncomment the desired task to run
+    // Uncomment the desired task to run ---------
 
     //Scenario 1
     // xTaskCreate(blink_task, "BlinkThread",
